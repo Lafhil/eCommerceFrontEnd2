@@ -27,16 +27,15 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
-              "node_modules/font-awesome/css/font-awesome.min.css",
-              "node_modules/@iconscout/unicons/css/line.css",
-              "node_modules/primeflex/primeflex.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/assets/css/theme-rtl.min.css",
               "src/assets/css/theme.min.css",
               "src/assets/css/user-rtl.min.css"
             ],
             "scripts": ["node_modules/bootstrap/dist/js/bootstrap.js",
-              "src/assets/js/ecommerce-dashboard.js",
-              "src/assets/js/phoenix.js"
+
             ]
           },
           "configurations": {
@@ -104,5 +103,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "ac63cf67-a5d0-48aa-92ee-5338ac87e361"
   }
 }
