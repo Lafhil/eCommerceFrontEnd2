@@ -1,0 +1,460 @@
+<div class="layout-main">
+<div class="content container-fluid">
+
+  <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+    <h2 class="h1 mb-0 d-flex gap-2">
+      <img src="https://6valley.6amtech.com/public/assets/back-end/img/inhouse-product-list.png" alt="">
+      Add New Product
+    </h2>
+  </div>
+
+
+  <form class="product-form text-start" action="https://6valley.6amtech.com/admin/product/store"
+        method="POST" enctype="multipart/form-data" id="product_form" data-select2-id="product_form">
+    <!--Product Name and Descrition-->
+    <div class="card">
+      <p-tabView >
+        <p-tabPanel header="arab">
+          <div class="card-body">
+            <div class="lang_form" id="en-form">
+              <div class="form-group  row">
+                <label class="title-color" for="en_name">Product name
+                  (EN)
+                </label>
+                <input type="text" pInputText required=""  id="en_name" class="p-2" placeholder="New Product">
+              </div>
+              <input type="hidden" name="lang[]" value="en">
+              <div class="form-group pt-4">
+                <label class="title-color" for="en_description">Description
+                  (EN)</label>
+                <p-editor id="en_description"  [style]="{ height: '250px' }"></p-editor>
+              </div>
+            </div>
+
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+
+    </div>
+    <!--Fin Product Name and Descrition-->
+    <!--generaale Setup-->
+    <div class="card mt-3 rest-part" data-select2-id="184">
+      <div class="card-header">
+        <div class="d-flex gap-2">
+          <i class="tio-user-big"></i>
+          <h4 class="mb-0">General setup</h4>
+        </div>
+      </div>
+      <div class="card-body" data-select2-id="183">
+        <div class="row" data-select2-id="182">
+          <!-- categorie-->
+          <div class="col-md-6 col-lg-4 col-xl-3" data-select2-id="181">
+            <div class="form-group" data-select2-id="180">
+              <label for="categorie" class="title-color row">Category</label>
+              <p-dropdown id="categorie" class="row" [options]="categories" [(ngModel)]="selectedCaegorie" optionLabel="categoryName"  [filter]="true" filterBy="categoryName"
+                          [showClear]="true" placeholder="Select a Categorie">
+                <ng-template let-selected pTemplate="item">
+                  <div class="flex align-items-center gap-2">
+                    <div>{{ selected.categoryName }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+          </div>
+
+    <!--Sub categorie-->
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="form-group">
+              <label class="title-color d-flex justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2">
+                  Product SKU
+                  <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Create a unique product code by clicking on the “Generate Code” button">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+                </div>
+                <a class="style-one-pro cursor-pointer" onclick="document.getElementById('generate_number').value = getRndInteger()">
+                  Generate code
+                </a>
+              </label>
+              <input type="text" minlength="6" id="generate_number" name="code" class="form-control" value="" placeholder="Code" required="">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3 physical_product_show">
+            <div class="form-group">
+              <label class="title-color">Unit</label>
+              <select class="js-example-basic-multiple form-control" name="unit">
+                <option value="kg">
+                  kg</option>
+                <option value="pc">
+                  pc</option>
+                <option value="gms">
+                  gms</option>
+                <option value="ltrs">
+                  ltrs</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="form-group">
+              <label class="title-color d-flex align-items-center gap-2">
+                Search tags
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Add the product search tag for this product that customers can use to search quickly">
+<img width="16" src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+              </label>
+              <div class="bootstrap-tagsinput"><input type="text" style="height: 32px" placeholder="Enter tag"></div><input type="text" class="form-control" placeholder="Enter tag" name="tags" data-role="tagsinput" style="display: none;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Fin Generale Setup-->
+    <!--pricing & other-->
+    <div class="card mt-3 rest-part">
+      <div class="card-header">
+        <div class="d-flex gap-2">
+          <i class="tio-user-big"></i>
+          <h4 class="mb-0">Pricing &amp; others</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row align-items-end">
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="form-group">
+              <div class="d-flex gap-2 mb-2">
+                <label class="title-color mb-0">Purchase price ($)</label>
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Add the purchase price for this product.">
+                <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+                </span>
+              </div>
+              <input type="number" min="0" step="0.01" placeholder="Purchase price" value="" name="purchase_price" class="form-control" required="">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="form-group">
+              <div class="d-flex gap-2 mb-2">
+                <label class="title-color mb-0">Unit price ($)</label>
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Set the selling price for each unit of this product. This Unit Price section won’t be applied if you set a variation wise price.">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+              </div>
+              <input type="number" min="0" step="0.01" placeholder="Unit price" name="unit_price" value="" class="form-control" required="">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3" id="minimum_order_qty">
+            <div class="form-group">
+              <div class="d-flex gap-2 mb-2">
+                <label class="title-color mb-0" for="minimum_order_qty">Minimum order qty</label>
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Set the minimum order quantity that customers must choose. Otherwise  the checkout process won’t start.">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+              </div>
+              <input type="number" min="1" value="1" step="1" placeholder="Minimum order quantity" name="minimum_order_qty" id="minimum_order_qty" class="form-control" required="">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3 physical_product_show" id="quantity">
+            <div class="form-group">
+              <div class="d-flex gap-2 mb-2">
+                <label class="title-color mb-0" for="current_stock">Current stock qty</label>
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Add the Stock Quantity of this product that will be visible to customers.">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+              </div>
+              <input type="number" min="0" value="0" step="1" placeholder="Quantity" name="current_stock" id="current_stock" class="form-control" required="">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="form-group">
+              <div class="d-flex gap-2 mb-2">
+                <label class="title-color mb-0" for="discount_Type">Discount Type</label>
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="If “Flat”  discount amount will be set as fixed amount. If “Percentage”  discount amount will be set as percentage.">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+              </div>
+              <select class="form-control" name="discount_type" id="discount_type">
+                <option value="flat">Flat</option>
+                <option value="percent">Percent</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="form-group">
+              <div class="d-flex gap-2">
+                <label class="title-color" for="discount">Discount amount <span class="discount_amount_symbol">($)</span></label>
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Add the discount amount in percentage or a fixed value here.">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+              </div>
+              <input type="number" min="0" value="0" step="0.01" placeholder="Ex: 5" name="discount" id="discount" class="form-control" required="">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="form-group">
+              <div class="d-flex gap-2">
+                <label class="title-color" for="tax">Tax amount(%)</label>
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Set the Tax Amount in percentage here">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+              </div>
+              <input type="number" min="0" value="0" step="0.01" placeholder="Ex: 5" name="tax" id="tax" class="form-control">
+              <input name="tax_type" value="percent" class="d-none">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="form-group">
+              <div class="d-flex gap-2">
+                <label class="title-color" for="tax_model">Tax calculation</label>
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Set the tax calculation method from here. Select “Include with product” to combine product price and tax on the checkout. Pick “Exclude from product” to display product price and tax amount separately.">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+              </div>
+              <select name="tax_model" id="tax_model" class="form-control" required="">
+                <option value="include">Include with product</option>
+                <option value="exclude">Exclude with product</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-3 physical_product_show" id="shipping_cost">
+            <div class="form-group">
+              <div class="d-flex gap-2">
+                <label class="title-color">Shipping cost ($)</label>
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Set the shipping cost for this product here. Shipping cost will only be applicable if product-wise shipping is enabled.">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+              </div>
+              <input type="number" min="0" value="0" step="1" placeholder="Shipping cost" name="shipping_cost" class="form-control" required="">
+            </div>
+          </div>
+          <div class="col-md-6 physical_product_show" id="shipping_cost_multy">
+            <div class="form-group">
+              <div class="form-control h-auto min-form-control-height d-flex align-items-center flex-wrap justify-content-between gap-2">
+                <div class="d-flex gap-2">
+                  <label class="title-color text-capitalize" for="shipping_cost">Shipping cost multiply with quantity</label>
+                  <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="If enabled  the shipping charge will increase with the product quantity">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+                </div>
+                <div>
+                  <label class="switcher">
+                    <input type="checkbox" class="switcher_input" name="multiplyQTY">
+                    <span class="switcher_control"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin pricing & other-->
+    <!--product variation Setup-->
+    <div class="card mt-3 rest-part physical_product_show">
+      <div class="card-header">
+        <div class="d-flex gap-2">
+          <i class="tio-user-big"></i>
+          <h4 class="mb-0">Product variation setup</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row align-items-end">
+          <div class="col-md-6">
+            <div class="mb-3 d-flex align-items-center gap-2">
+              <label for="colors" class="title-color mb-0">
+                Select colors :
+              </label>
+              <label class="switcher">
+                <p-inputSwitch></p-inputSwitch>
+              </label>
+            </div>
+            <p-multiSelect id="colors" class="row" [options]="colors" [(ngModel)]="selectedColors"
+                           [filter]="true" filterBy="label" [showClear]="true" placeholder="Select a Color">
+
+              <ng-template let-selected pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                  <div class="color-ball" style="background-color:{{selected.value}};"></div>
+                  <div>{{ selected.label }}</div>
+                </div>
+              </ng-template>
+            </p-multiSelect>
+          </div>
+          <div class="col-md-12 mt-2 mb-2">
+            <div class="row customer_choice_options mt-2" id="customer_choice_options"></div>
+            <div class="form-group sku_combination" id="sku_combination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin product variation Setup-->
+    <!--upload img Product-->
+    <div class="mt-3 rest-part">
+      <div class="row g-2">
+        <div class="col-md-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="form-group">
+                <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+                  <div>
+                    <label for="name" class="title-color text-capitalize font-weight-bold mb-0">Product thumbnail</label>
+                    <span class="badge badge-soft-info">Ratio 1:1 (500 x 500 px)</span>
+                    <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Add your product’s thumbnail in JPG, PNG or JPEG Format within 2MB">
+                    <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <div class="dropZone position-relative col "  appDrag (files)="fileDropped($event)">
+                    <div class=" position-relative    ">
+                      <div>
+                        <div class=" text-center" >
+                          <a (click)="fileUpload.click()"><span class="row pi pi-cloud-upload fw-bolder " style="font-size:5em;"></span><br></a>
+                          <p class="">drag and drop or upload your file</p>
+                          <input multiple #fileUpload type="file" (change)="fileUploade($event)"  style="display:none"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <p class="text-muted mt-2">Image format : Jpg, png, jpeg, webp, <br>
+                    Image size : Max 2 MB</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="additional_image_column col-md-9">
+          <div class="card h-100 col">
+            <div class="card-body "  >
+              <div class="dropZone position-relative col "  appDrag (files)="fileDropped($event)">
+                <div class=" position-relative    ">
+                  <div>
+                  <div class=" text-center " >
+                    <a (click)="fileUpload.click()"><span class="row pi pi-cloud-upload fw-bolder " style="font-size:5em;"></span><br></a>
+                    <p class="">drag and drop or upload your file</p>
+                    <input multiple #fileUpload type="file" (change)="fileUploade($event)"  style="display:none"/>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="listImageView d-flex ">
+              <div class="position-relative radius-10 mb-3 m-2 border-info col-2 border-1 " *ngFor="let img of images let i=index;" >
+                <div class="delete-bouton" (click)="deleteImg(i)">X</div>
+              <img  [src]="img.url">
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- fin upload img Product-->
+    <!--video Product-->
+    <div class="card mt-3 rest-part">
+      <div class="card-header">
+        <div class="d-flex gap-2">
+          <i class="tio-user-big"></i>
+          <h4 class="mb-0">Product video</h4>
+          <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Add the YouTube video link here. Only the YouTube-embedded link is supported.">
+<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="title-color mb-0">Youtube video link</label>
+          <span class="text-info"> (Optional please provide embed link not direct link.)</span>
+        </div>
+        <input type="text" name="video_link" placeholder="Ex : https://www.youtube.com/embed/5R06LRdUCSE" class="form-control" required="">
+      </div>
+    </div>
+    <!--Fin video Product-->
+    <!-- Seo section-->
+    <div class="card mt-3 rest-part">
+      <div class="card-header">
+        <div class="d-flex gap-2">
+          <i class="tio-user-big"></i>
+          <h4 class="mb-0">
+            Seo section
+            <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add meta titles descriptions and images for products, This will help more people to find them on search engines and see the right details while sharing on other social platforms">
+            <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+            </span>
+          </h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label class="title-color">
+                Meta Title
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add the products title name taglines etc here This title will be seen on Search Engine Results Pages and while sharing the products link on social platforms [ Character Limit : 100 ]">
+                <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+                </span>
+              </label>
+              <input type="text" name="meta_title" placeholder="Meta Title" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="title-color">
+                Meta Description
+                <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" data-placement="right" title="" data-original-title="Write a short description of the InHouse shops product This description will be seen on Search Engine Results Pages and while sharing the products link on social platforms [ Character Limit : 100 ]">
+                <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+                </span>
+              </label>
+              <textarea rows="4" type="text" name="meta_description" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex justify-content-center">
+              <div class="form-group w-100">
+                <div class="d-flex align-items-center justify-content-between gap-2">
+                  <div class="row">
+                    <label class="title-color" for="meta_Image">
+                      Meta Image
+                    </label>
+                    <span class="badge badge-soft-info">(Ratio 2:1)</span>
+
+                    <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Add Meta Image in JPG, PNG or JPEG Format within 2MB, Which will be shown in search engine results.">
+                     <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div class="dropZone position-relative col "  appDrag (files)="fileDropped($event)">
+              <div class=" position-relative    ">
+                <div>
+                  <div class=" text-center" >
+                    <a (click)="fileUpload.click()"><span class="row pi pi-cloud-upload fw-bolder " style="font-size:5em;"></span><br></a>
+                    <p class="">drag and drop or upload your file</p>
+                    <input multiple #fileUpload type="file" (change)="fileUploade($event)"  style="display:none"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Seo section-->
+    <!--Button-->
+    <div class="card">
+
+    <div class="row justify-content-end gap-3 mt-3 mx-1">
+      <button type="reset" class="btn btn-info px-5">Reset</button>
+      <button type="button" onclick="check()" class="btn btn-primary px-5">Submit</button>
+    </div>
+    </div>
+    <!--Fin Button-->
+  </form>
+</div>
+</div>

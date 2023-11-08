@@ -1,0 +1,16 @@
+.dropZone{
+  height:150px;
+  min-width:100px;
+  display:table;
+  background-color:#eeee;
+  border:dashed 1px #aaaa;
+  border-radius:10px;
+ cursor:pointer;
+}
+.text-wraper{
+  display:table-cell;
+  vertical-align:middle;
+}
+.text-wrapper-centred{
+  text-align:center;
+}
