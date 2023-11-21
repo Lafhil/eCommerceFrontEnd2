@@ -1,0 +1,129 @@
+
+<div class="layout-main">
+<p-toast></p-toast>
+  <div class="content container-fluid">
+
+    <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+      <h2 class="h1 mb-0 d-flex gap-2">
+        <img src="https://6valley.6amtech.com/public/assets/back-end/img/inhouse-product-list.png" alt="">
+        Manage Categories
+      </h2>
+    </div>
+
+
+
+      <!--Product Name and Descrition-->
+
+      <div class="mt-3 rest-part">
+        <form   name="categorieForm" id="categorieForm" #categorieForm="ngForm" >
+        <div class="row g-2">
+          <div class="col-md-4">
+            <div class="card h-100">
+              <div class="card-body  flex justify-content-center p-0">
+                <p-tree  class="w-full h-100 md:w-30rem  " (onNodeSelect)="getCategorieSelected($event)" (blur)="getParent()" expanded
+                         scrollHeight="500px"  [filter]="true" [value]="files" selectionMode="single"
+                         [(selection)]="selectedCat"></p-tree>
+
+              </div>
+            </div>
+          </div>
+
+        <div class=" col-md-8">
+          <div class="card h-100">
+            <div class="card-body "  >
+              <div  id="en-form">
+                <div class="form-group  row">
+                  <label class="title-color" for="catName">Description categorie
+                  </label>
+                  <input type="text" pInputText required="" ngModel name ="catName"  #catName="ngModel"
+                         id="catName" [(ngModel)]="categorie.categoryName"
+                         class="p-2 form-control" placeholder="Name Categorie" required="true">
+                  <div class="alert alert-danger" *ngIf="catName.touched && !catName.valid">Required</div>
+                </div>
+                <div class="form-group  row">
+                  <label class="title-color" for="catDesc">Description categorie
+                  </label>
+                  <textarea class="form-control" rows="5" cols="30" pInputTextarea ngModel name="catDesc"
+                            id="catDesc" #catDesc="ngModel"
+                            [(ngModel)]="categorie.categoryDesc" id="catDesc" required="true"></textarea>
+                  <div class="alert alert-danger" *ngIf="catDesc.touched && !catDesc.valid">Required</div>
+                </div>
+                <div class="form-group  col mt-3">
+                  <label class="title-color mx-3" for="categorieParent">is Parent
+                  </label>
+                  <p-inputSwitch class="pt-2 form-control-lg col-2 "  (onChange)="chekParentSwitch($event)" [ngModelOptions]="{standalone: true}"
+                                 [(ngModel)]="categorie.parent" id="parentSwitch"  #parentSwitch="ngModel" nam="parentSwitc" ngModel></p-inputSwitch>
+                </div>
+                <div class="form-group  row " *ngIf="!categorie.parent">
+                  <label class="title-color" for="categorieParent">Description categorie
+                  </label>
+
+                  <p-dropdown id="categorieParent" class=" form-control-lg col-4  " name="categorieParent"
+                              [options]="categoriesParents" [(ngModel)]="selectedCaegorieParent"
+                              optionLabel="categoryName" (onChange)="selectParent()"    [filter]="true" filterBy="categoryName"
+                              [showClear]="true" placeholder="Select a Categorie Parent"
+                  ngModel #categorieParent="ngModel" [required]="true" >
+                    <ng-template let-selected pTemplate="item">
+                      <div class="flex align-items-center gap-2 col-4">
+                        <div>{{ selected.categoryName }}</div>
+                      </div>
+                    </ng-template>
+                  </p-dropdown>
+
+                </div>
+                <div class="dropZone form-group  col-4 col-sm-3 p-0 "  appDrag (files)="fileDropped($event)"   >
+                  <div class=" position-relative    " >
+                    <div>
+                      <div class=" text-center" >
+                        <div *ngIf="!selectedCat || categorie.imageDecode==undefined" >
+                          <a (click)="fileUpload.click()"><span class="row pi pi-cloud-upload fw-bolder mt-5 md:mb-0 " style="font-size:5em;"></span><br></a>
+                          <p class="mt-5 mb-5">drag and drop or upload your file</p>
+                        </div>
+
+                        <div class=" text-center w-100" *ngIf="selectedCat && (categorie.imageDecode!=undefined || categorie.imageDecode!=null )" >
+
+                           <p-image class="form-control position-relative  " ngModel id="imgcat" name="imgcat" #imgcat="ngModel" ngDefaultControl
+                                    [src]=" convertFileFromBase64(categorie.imageDecode)" [preview]="true"
+                            >
+
+                           </p-image>
+                          <div class="bg-aliceblue border-1 border-info radius-5 ">
+                            <span class="pi pi-trash position-relative mx-3 hover-c1" (click)="deleteImage()" style="color:red;"></span>
+                            <span class="pi pi-upload pi-align-left position-relative hover-c1 " (click)="fileUpload.click()" style="color:red;"></span>
+                          </div>
+
+                          </div>
+                          <input multiple #fileUpload type="file" accept="image/jpeg" (change)="fileUploaded($event)" style="display:none"/>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row"  *ngIf="messageUploadImage.length>0" >
+                    <p-messages [(value)]="messageUploadImage" [enableService]="false"  [closable]="false"></p-messages>
+
+                  </div>
+                  <div class="col flex-md-column justify-content-end text-center gap-2 mt-5rem mx-0">
+                    <button pButton type="reset" class="m-2 __w-30p  btn btn-info px-2 p-button-rounded h-auto" label="reset"
+                            (click)="resetForm()"></button>
+                    <button type="button" pRipple pButton class="m-2 __w-30p btn btn-primary px-2  p-button-rounded"
+                            (click)="save()" label="Save" [disabled]="categorieForm.form.invalid"></button>
+                    <p-confirmPopup></p-confirmPopup>
+                    <button type="button" pRipple pButton class=" __w-30p btn btn-danger-light px-2  p-button-rounded"  label="remove"
+                            (click)="confirmeDeleteCategorie($event)" [disabled]="categorieForm.form.invalid"> </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+          </form>
+        </div>
+
+    </div>
+  </div>

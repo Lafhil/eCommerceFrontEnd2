@@ -1,24 +1,27 @@
 import {SafeUrl} from "@angular/platform-browser";
 
-export interface ProductCategories {
-  categoryId: number
-  categoryName: string
-  categorieImage ?: Blob
+export class ProductCategories {
+  categoryId?: number
+  categoryName?: string
+  parent?:boolean
+  imageDecode?:string
+  categorieImage ?: any
   status?: string
   categorieParent?: ProductCategories
-  productsByCategoryId?: Products[]
+  categoryDesc?:string
+  //productsByCategoryId?: Products[]
   categorieShilds?: ProductCategories[]
 }
 
-export interface Products {
-  productId: number
-  productName: string
+export class Products {
+  productId?: number
+  productName?: string
   description?: string
   price?: number
   photo?: Blob
-  adminOrderItemsByProductId?: any[]
-  orderItemsByProductId?: any[]
-  productReviewsByProductId?: any[]
+ // adminOrderItemsByProductId?: any[]
+//  orderItemsByProductId?: any[]
+//  productReviewsByProductId?: any[]
   images?: Blob[]
 }
 export interface Color{

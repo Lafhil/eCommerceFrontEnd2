@@ -30,7 +30,13 @@ import {InputSwitchModule} from "primeng/inputswitch";
 import {FileUploadModule} from "primeng/fileupload";
 import { DragDropuploadFileComponent } from './outile/drag-dropupload-file/drag-dropupload-file.component';
 import {DragDirective} from "./outile/drag.directive";
-
+import { CategorieComponent } from './admin/categorie/categorie.component';
+import { TreeModule } from 'primeng/tree';
+import { ToastModule } from 'primeng/toast';
+import {PanelModule} from "primeng/panel";
+import {CardModule} from "primeng/card";
+import {ImageModule} from "primeng/image";
+import {ConfirmPopupModule} from "primeng/confirmpopup";
 
 @NgModule({
   declarations: [
@@ -39,38 +45,45 @@ import {DragDirective} from "./outile/drag.directive";
     AddProductComponent,
     DragDropuploadFileComponent,
     DragDirective,
+    CategorieComponent,
 
 
   ],
-  imports: [
-    FormsModule,
-    EditorModule,
-    DashboardModule,
-    DashboardModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    SlideMenuModule,
-    ButtonModule,
-    MegaMenuModule,
-    MenuModule,
-    BadgeModule,
-    AppLayoutModule,
-    AppRoutingModule,
-    AutoCompleteModule,
-    CalendarModule,
-    ChipsModule,
-    DropdownModule,
-    InputMaskModule,
-    InputNumberModule,
-    CascadeSelectModule,
-    MultiSelectModule,
-    InputTextareaModule,
-    InputTextModule,
-    TabViewModule,
-    InputSwitchModule,
-    FileUploadModule
+    imports: [
+        ToastModule,
+        TreeModule,
+        FormsModule,
+        EditorModule,
+        DashboardModule,
+        DashboardModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        SlideMenuModule,
+        ButtonModule,
+        MegaMenuModule,
+        MenuModule,
+        BadgeModule,
+        AppLayoutModule,
+        AppRoutingModule,
+        AutoCompleteModule,
+        CalendarModule,
+        ChipsModule,
+        DropdownModule,
+        InputMaskModule,
+        InputNumberModule,
+        CascadeSelectModule,
+        MultiSelectModule,
+        InputTextareaModule,
+        InputTextModule,
+        TabViewModule,
+        InputSwitchModule,
+        FileUploadModule,
+        PanelModule,
+        CardModule,
+        ImageModule,
+        ConfirmPopupModule
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

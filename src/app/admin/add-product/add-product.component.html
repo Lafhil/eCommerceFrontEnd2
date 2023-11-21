@@ -14,7 +14,7 @@
     <!--Product Name and Descrition-->
     <div class="card">
       <p-tabView >
-        <p-tabPanel header="arab">
+        <p-tabPanel header="arab"  >
           <div class="card-body">
             <div class="lang_form" id="en-form">
               <div class="form-group  row">
@@ -27,7 +27,7 @@
               <div class="form-group pt-4">
                 <label class="title-color" for="en_description">Description
                   (EN)</label>
-                <p-editor id="en_description"  [style]="{ height: '250px' }"></p-editor>
+                <p-editor id="en_description" [style]="{ height: '250px' }"></p-editor>
               </div>
             </div>
 
@@ -51,7 +51,7 @@
           <div class="col-md-6 col-lg-4 col-xl-3" data-select2-id="181">
             <div class="form-group" data-select2-id="180">
               <label for="categorie" class="title-color row">Category</label>
-              <p-dropdown id="categorie" class="row" [options]="categories" [(ngModel)]="selectedCaegorie" optionLabel="categoryName"  [filter]="true" filterBy="categoryName"
+              <p-dropdown id="categorie" class="row" name="categorieSelect" [options]="categories" [(ngModel)]="selectedCaegorie" optionLabel="categoryName"  [filter]="true" filterBy="categoryName"
                           [showClear]="true" placeholder="Select a Categorie">
                 <ng-template let-selected pTemplate="item">
                   <div class="flex align-items-center gap-2">
@@ -266,7 +266,7 @@
                 <p-inputSwitch></p-inputSwitch>
               </label>
             </div>
-            <p-multiSelect id="colors" class="row" [options]="colors" [(ngModel)]="selectedColors"
+            <p-multiSelect id="colors" name="colorMultiSelect" class="row" [options]="colors" [(ngModel)]="selectedColors"
                            [filter]="true" filterBy="label" [showClear]="true" placeholder="Select a Color">
 
               <ng-template let-selected pTemplate="item">
@@ -449,9 +449,9 @@
     <!--Button-->
     <div class="card">
 
-    <div class="row justify-content-end gap-3 mt-3 mx-1">
-      <button type="reset" class="btn btn-info px-5">Reset</button>
-      <button type="button" onclick="check()" class="btn btn-primary px-5">Submit</button>
+    <div class="col justify-content-end text-center gap-3 mt-3 mx-1">
+      <button pButton class="m-3 __w-30p  btn btn-info px-2 p-button-rounded h-auto" label="Reset"></button>
+      <button pButton onclick="check()" class="m-3 __w-30p btn btn-primary px-2  p-button-rounded" label="submit"></button>
     </div>
     </div>
     <!--Fin Button-->

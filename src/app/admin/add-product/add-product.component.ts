@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import {Color, FileHandel, ProductCategories} from "../../model/model";
 import {DragDirective} from "../../outile/drag.directive";
 import {DomSanitizer} from "@angular/platform-browser";
+import {CategorieServiceService} from "../../services/categorie-service.service";
 
 @Component({
   selector: 'app-add-product',
@@ -14,15 +15,18 @@ export class AddProductComponent {
    selectedColors:Color[]|undefined;
   selectedCaegorie: ProductCategories | undefined ;
   images:FileHandel[]=[];
-  constructor(private sanitizer:DomSanitizer) {
+  constructor(private sanitizer:DomSanitizer,private CategorieService:CategorieServiceService) {
   }
   ngOnInit(){
-  this.categories = [
-      {categoryId: 1, categoryName: 'cat1'},
-      {categoryId: 2, categoryName: 'cat2'},
-      {categoryId: 3, categoryName: 'cat3'},
-      {categoryId: 4, categoryName: 'cat4'},
-    ];
+  this.CategorieService.getCategoriesShild().subscribe(
+    res=>this.categories=res
+  )
+    // [
+    //   {categoryId: 1, categoryName: 'cat1'},
+    //   {categoryId: 2, categoryName: 'cat2'},
+    //   {categoryId: 3, categoryName: 'cat3'},
+    //   {categoryId: 4, categoryName: 'cat4'},
+    // ];
   this.colors=[
     {label:'AliceBlue',value:'#F0F8FF'},
     {label:'Amethyst',value:'#9966CC'},

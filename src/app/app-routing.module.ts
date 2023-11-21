@@ -4,9 +4,12 @@ import {HomeComponent} from "./home/home.component";
 import {DashboardComponent} from "./admin/dashboard/dashboard.component";
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import {AddProductComponent} from "./admin/add-product/add-product.component";
+import {CategorieComponent} from "./admin/categorie/categorie.component";
 
 const routes:Routes=[{path:'',component:AppLayoutComponent,
-children:[{path:'',component:AddProductComponent}]
+                      children:[{path:'',component:DashboardComponent},
+                                {path:'addProduct',component:AddProductComponent},
+                                  {path:'addCategorie',component:CategorieComponent}]
 }]
 @NgModule({
     imports: [
