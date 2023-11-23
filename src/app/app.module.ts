@@ -12,7 +12,7 @@ import {AppLayoutModule} from "./layout/app.layout.module";
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {DashboardModule} from "./admin/dashboard/dashboard.module";
-import { AddProductComponent } from './admin/add-product/add-product.component';
+import { AddProductComponent } from './admin/manageProduct/add-product/add-product.component';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CalendarModule } from "primeng/calendar";
 import { ChipsModule } from "primeng/chips";
@@ -37,6 +37,10 @@ import {PanelModule} from "primeng/panel";
 import {CardModule} from "primeng/card";
 import {ImageModule} from "primeng/image";
 import {ConfirmPopupModule} from "primeng/confirmpopup";
+import { ListProductComponent } from './admin/manageProduct/list-product/list-product.component';
+import { TableModule } from 'primeng/table';
+import {TagModule} from "primeng/tag";
+import {RatingModule} from "primeng/rating";
 
 @NgModule({
   declarations: [
@@ -46,44 +50,48 @@ import {ConfirmPopupModule} from "primeng/confirmpopup";
     DragDropuploadFileComponent,
     DragDirective,
     CategorieComponent,
+    ListProductComponent,
 
 
   ],
-    imports: [
-        ToastModule,
-        TreeModule,
-        FormsModule,
-        EditorModule,
-        DashboardModule,
-        DashboardModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        SlideMenuModule,
-        ButtonModule,
-        MegaMenuModule,
-        MenuModule,
-        BadgeModule,
-        AppLayoutModule,
-        AppRoutingModule,
-        AutoCompleteModule,
-        CalendarModule,
-        ChipsModule,
-        DropdownModule,
-        InputMaskModule,
-        InputNumberModule,
-        CascadeSelectModule,
-        MultiSelectModule,
-        InputTextareaModule,
-        InputTextModule,
-        TabViewModule,
-        InputSwitchModule,
-        FileUploadModule,
-        PanelModule,
-        CardModule,
-        ImageModule,
-        ConfirmPopupModule
+  imports: [
+    TableModule,
+    ToastModule,
+    TreeModule,
+    FormsModule,
+    EditorModule,
+    DashboardModule,
+    DashboardModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    SlideMenuModule,
+    ButtonModule,
+    MegaMenuModule,
+    MenuModule,
+    BadgeModule,
+    AppLayoutModule,
+    AppRoutingModule,
+    AutoCompleteModule,
+    CalendarModule,
+    ChipsModule,
+    DropdownModule,
+    InputMaskModule,
+    InputNumberModule,
+    CascadeSelectModule,
+    MultiSelectModule,
+    InputTextareaModule,
+    InputTextModule,
+    TabViewModule,
+    InputSwitchModule,
+    FileUploadModule,
+    PanelModule,
+    CardModule,
+    ImageModule,
+    ConfirmPopupModule,
+    TagModule,
+    RatingModule
 
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

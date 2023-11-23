@@ -18,6 +18,7 @@ export class Products {
   productName?: string
   description?: string
   price?: number
+  categorie?:String;
   photo?: Blob
  // adminOrderItemsByProductId?: any[]
 //  orderItemsByProductId?: any[]

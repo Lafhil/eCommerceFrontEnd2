@@ -9,8 +9,6 @@
   </div>
 
 
-  <form class="product-form text-start" action="https://6valley.6amtech.com/admin/product/store"
-        method="POST" enctype="multipart/form-data" id="product_form" data-select2-id="product_form">
     <!--Product Name and Descrition-->
     <div class="card">
       <p-tabView >
@@ -21,13 +19,13 @@
                 <label class="title-color" for="en_name">Product name
                   (EN)
                 </label>
-                <input type="text" pInputText required=""  id="en_name" class="p-2" placeholder="New Product">
+                <input type="text" pInputText required=""  id="en_name" class="p-2 form-control" placeholder="New Product">
               </div>
               <input type="hidden" name="lang[]" value="en">
               <div class="form-group pt-4">
                 <label class="title-color" for="en_description">Description
                   (EN)</label>
-                <p-editor id="en_description" [style]="{ height: '250px' }"></p-editor>
+                <p-editor id="en_description" class="form-control-lg" [style]="{ height: '250px' }"></p-editor>
               </div>
             </div>
 
@@ -50,8 +48,8 @@
           <!-- categorie-->
           <div class="col-md-6 col-lg-4 col-xl-3" data-select2-id="181">
             <div class="form-group" data-select2-id="180">
-              <label for="categorie" class="title-color row">Category</label>
-              <p-dropdown id="categorie" class="row" name="categorieSelect" [options]="categories" [(ngModel)]="selectedCaegorie" optionLabel="categoryName"  [filter]="true" filterBy="categoryName"
+              <label for="categorie" class=" row">Category</label>
+              <p-dropdown id="categorie" class="row " name="categorieSelect" [options]="categories" [(ngModel)]="selectedCaegorie" optionLabel="categoryName"  [filter]="true" filterBy="categoryName"
                           [showClear]="true" placeholder="Select a Categorie">
                 <ng-template let-selected pTemplate="item">
                   <div class="flex align-items-center gap-2">
@@ -65,33 +63,34 @@
     <!--Sub categorie-->
           <div class="col-md-6 col-lg-4 col-xl-3">
             <div class="form-group">
-              <label class="title-color d-flex justify-content-between gap-2">
+              <label class="title-color d-flex justify-content-between gap-2 ">
                 <div class="d-flex align-items-center gap-2">
                   Product SKU
                   <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Create a unique product code by clicking on the “Generate Code” button">
-<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
-</span>
+          <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+          </span>
                 </div>
                 <a class="style-one-pro cursor-pointer" onclick="document.getElementById('generate_number').value = getRndInteger()">
                   Generate code
                 </a>
               </label>
-              <input type="text" minlength="6" id="generate_number" name="code" class="form-control" value="" placeholder="Code" required="">
+              <p-inputNumber   id="generate_number" name="code"
+                               class=" row" placeholder="Code" ></p-inputNumber>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 col-xl-3 physical_product_show">
             <div class="form-group">
-              <label class="title-color">Unit</label>
-              <select class="js-example-basic-multiple form-control" name="unit">
-                <option value="kg">
-                  kg</option>
-                <option value="pc">
-                  pc</option>
-                <option value="gms">
-                  gms</option>
-                <option value="ltrs">
-                  ltrs</option>
-              </select>
+              <label class="d-flex align-items-center gap-2">Unit</label>
+              <p-dropdown class="js-example-basic-multiple  row" name="unit">
+<!--                <option value="kg">-->
+<!--                  kg</option>-->
+<!--                <option value="pc">-->
+<!--                  pc</option>-->
+<!--                <option value="gms">-->
+<!--                  gms</option>-->
+<!--                <option value="ltrs">-->
+<!--                  ltrs</option>-->
+              </p-dropdown>
             </div>
           </div>
           <div class="col-md-9">
@@ -102,7 +101,7 @@
 <img width="16" src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
 </span>
               </label>
-              <div class="bootstrap-tagsinput"><input type="text" style="height: 32px" placeholder="Enter tag"></div><input type="text" class="form-control" placeholder="Enter tag" name="tags" data-role="tagsinput" style="display: none;">
+              <div class="bootstrap-tagsinput"><input   type="text" class="form-control"  pInputText style="height: 32px" placeholder="Enter tag"></div>
             </div>
           </div>
         </div>
@@ -127,7 +126,7 @@
                 <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
                 </span>
               </div>
-              <input type="number" min="0" step="0.01" placeholder="Purchase price" value="" name="purchase_price" class="form-control" required="">
+              <input  type="number" class="form-control" min="0" >
             </div>
           </div>
           <div class="col-md-6 col-lg-4 col-xl-3">
@@ -135,10 +134,11 @@
               <div class="d-flex gap-2 mb-2">
                 <label class="title-color mb-0">Unit price ($)</label>
                 <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Set the selling price for each unit of this product. This Unit Price section won’t be applied if you set a variation wise price.">
-<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
-</span>
+                    <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+                    </span>
               </div>
-              <input type="number" min="0" step="0.01" placeholder="Unit price" name="unit_price" value="" class="form-control" required="">
+              <input  type="number" class="form-control"  [(ngModel)]="prix">
+
             </div>
           </div>
           <div class="col-md-6 col-lg-4 col-xl-3" id="minimum_order_qty">
@@ -193,11 +193,11 @@
               <div class="d-flex gap-2">
                 <label class="title-color" for="tax">Tax amount(%)</label>
                 <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Set the Tax Amount in percentage here">
-<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
-</span>
+                    <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+                    </span>
               </div>
               <input type="number" min="0" value="0" step="0.01" placeholder="Ex: 5" name="tax" id="tax" class="form-control">
-              <input name="tax_type" value="percent" class="d-none">
+
             </div>
           </div>
           <div class="col-md-6 col-lg-4 col-xl-3">
@@ -205,13 +205,12 @@
               <div class="d-flex gap-2">
                 <label class="title-color" for="tax_model">Tax calculation</label>
                 <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" title="" data-original-title="Set the tax calculation method from here. Select “Include with product” to combine product price and tax on the checkout. Pick “Exclude from product” to display product price and tax amount separately.">
-<img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
-</span>
+                <img src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="">
+                </span>
               </div>
-              <select name="tax_model" id="tax_model" class="form-control" required="">
-                <option value="include">Include with product</option>
-                <option value="exclude">Exclude with product</option>
-              </select>
+              <p-dropdown name="tax_model " id="tax_model" class="row " >
+
+              </p-dropdown>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 col-xl-3 physical_product_show" id="shipping_cost">
@@ -451,10 +450,11 @@
 
     <div class="col justify-content-end text-center gap-3 mt-3 mx-1">
       <button pButton class="m-3 __w-30p  btn btn-info px-2 p-button-rounded h-auto" label="Reset"></button>
-      <button pButton onclick="check()" class="m-3 __w-30p btn btn-primary px-2  p-button-rounded" label="submit"></button>
+      <button pButton (click)="saveProduct()" class="m-3 __w-30p btn btn-primary px-2  p-button-rounded" label="submit"></button>
     </div>
     </div>
     <!--Fin Button-->
-  </form>
+
 </div>
 </div>
+

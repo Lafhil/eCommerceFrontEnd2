@@ -1,8 +1,8 @@
 import { Component,OnInit } from '@angular/core';
-import {Color, FileHandel, ProductCategories} from "../../model/model";
-import {DragDirective} from "../../outile/drag.directive";
+import {Color, FileHandel, ProductCategories} from "../../../model/model";
+import {DragDirective} from "../../../outile/drag.directive";
 import {DomSanitizer} from "@angular/platform-browser";
-import {CategorieServiceService} from "../../services/categorie-service.service";
+import {CategorieServiceService} from "../../../services/categorie-service.service";
 
 @Component({
   selector: 'app-add-product',
@@ -10,6 +10,7 @@ import {CategorieServiceService} from "../../services/categorie-service.service"
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent {
+  prix?:number;
   categories: ProductCategories[]|undefined
   colors:Color[]|undefined
    selectedColors:Color[]|undefined;
@@ -18,6 +19,7 @@ export class AddProductComponent {
   constructor(private sanitizer:DomSanitizer,private CategorieService:CategorieServiceService) {
   }
   ngOnInit(){
+    this.prix=40;
   this.CategorieService.getCategoriesShild().subscribe(
     res=>this.categories=res
   )
@@ -198,5 +200,8 @@ export class AddProductComponent {
   }
   deleteImg(i:number){
     this.images.splice(i,1);
+  }
+  saveProduct(){
+    console.log(this.prix)
   }
 }
